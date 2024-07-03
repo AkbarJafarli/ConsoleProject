@@ -19,7 +19,7 @@
 
         public override string ToString()
         {
-            return $"Is: {Id} Name: {Name} Price: {Price} CreatedDate: {CreatedDate.ToShortDateString()}";
+            return $"Id: {Id} - Name: {Name} - Price: {Price} - CreatedDate: {CreatedDate.ToShortDateString()}";
         }
     }
 }

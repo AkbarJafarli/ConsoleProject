@@ -5,7 +5,7 @@ using ConsoleProject.Services;
 
 UserService userService = new UserService();
 User activeUser = new("Admin", "admin@gmail.com", "Admin123");
-MedicineService medicineService=new MedicineService();  
+MedicineService medicineService = new MedicineService();
 userService.AddUser(activeUser);
 while (true)
 {
@@ -92,29 +92,30 @@ else if (choice == 2)
     Console.Write("Enter Category id:");
     int categoryId = int.Parse(Console.ReadLine());
     Medicine medicine = new Medicine(medicineName, medicinePrice, categoryId, activeUser.Id);
-    MedicineService medicineService1 = new MedicineService();
-    medicineService1.CreateMedicine(medicine);
+    medicineService = new MedicineService();
+    medicineService.CreateMedicine(medicine);
     Console.WriteLine("");
     goto restart;
 }
 else if (choice == 3)
 {
-    MedicineService medicineService2 = new MedicineService();
+    medicineService = new MedicineService();
+    Console.WriteLine("Enter Medicine id:");
     int id = int.Parse(Console.ReadLine());
-    medicineService2.RemoveMedicine(id);
+    medicineService.RemoveMedicine(id);
     Console.WriteLine("");
     goto restart;
 }
 else if (choice == 4)
 {
-    MedicineService medicineService3 = new MedicineService();
+    medicineService = new MedicineService();
     medicineService.GetAllMedicines();
     Console.WriteLine("");
     goto restart;
 }
 else if (choice == 5)
 {
-    MedicineService medicineService4 = new MedicineService();
+    medicineService = new MedicineService();
     Console.WriteLine("Enter id:");
     int id = int.Parse(Console.ReadLine());
     Console.Write("Enter Medicine name:");
@@ -124,27 +125,27 @@ else if (choice == 5)
     Console.Write("Enter category id:");
     int categoryId = int.Parse(Console.ReadLine());
     Medicine medicine = new Medicine(medicineName, medicinePrice, categoryId, activeUser.Id);
-    medicineService4.UpdateMedicine(id, medicine);
+    medicineService.UpdateMedicine(id, medicine);
     Console.WriteLine("");
     goto restart;
 }
 else if (choice == 6)
 {
-    MedicineService medicineService5 = new MedicineService();
+    medicineService = new MedicineService();
     Console.Write("Enter id:");
     int id = int.Parse(Console.ReadLine());
-    medicineService5.GetMedicineById(id);
+    Console.WriteLine(medicineService.GetMedicineById(id));
     Console.WriteLine("");
     goto restart;
 }
 else if (choice == 7)
 {
-    MedicineService medicineService6 = new MedicineService();
+    medicineService = new MedicineService();
     Console.Write("Enter Medicine name:");
     string medicineName = Console.ReadLine();
     try
     {
-        medicineService6.GetMedicineByName(medicineName);
+        medicineService.GetMedicineByName(medicineName);
         Console.WriteLine("");
         goto restart;
     }
@@ -155,10 +156,10 @@ else if (choice == 7)
 }
 else if (choice == 8)
 {
-    MedicineService medicineService7 = new MedicineService();
+    medicineService = new MedicineService();
     Console.Write("Enter id:");
     int categoryId = int.Parse(Console.ReadLine());
-    medicineService7.GetMedicineByCategory(categoryId);
+    medicineService.GetMedicineByCategory(categoryId);
     Console.WriteLine("");
     goto restart;
 }
