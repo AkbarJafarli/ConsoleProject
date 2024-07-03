@@ -10,9 +10,12 @@ namespace ConsoleProject.Services
             Array.Resize(ref DB.Medicines, DB.Medicines.Length + 1);
             DB.Medicines[DB.Medicines.Length - 1] = medicine;
         }
-        public Medicine[] GetAllMedicines()
+        public void GetAllMedicines()
         {
-            return DB.Medicines;
+            foreach (Medicine medicine in DB.Medicines)
+            {
+                Console.WriteLine(medicine);
+            }
         }
         public Medicine GetMedicineById(int id)
         {

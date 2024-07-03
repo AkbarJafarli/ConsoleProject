@@ -5,6 +5,7 @@ using ConsoleProject.Services;
 
 UserService userService = new UserService();
 User activeUser = new("Admin", "admin@gmail.com", "Admin123");
+MedicineService medicineService=new MedicineService();  
 userService.AddUser(activeUser);
 while (true)
 {
@@ -34,7 +35,7 @@ while (true)
         try
         {
             activeUser = userService.Login(loginEmail, loginPassword);
-            Console.WriteLine($"Welcome,{activeUser.Email}");
+            Console.WriteLine($"Welcome,{activeUser.FullName}");
             break;
         }
         catch (NotFoundException ex)
@@ -79,6 +80,7 @@ if (choice == 1)
     Category category = new Category(categoryName);
     UserService userService1 = new UserService();
     userService1.CreateCategory(category);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 2)
@@ -92,6 +94,7 @@ else if (choice == 2)
     Medicine medicine = new Medicine(medicineName, medicinePrice, categoryId, activeUser.Id);
     MedicineService medicineService1 = new MedicineService();
     medicineService1.CreateMedicine(medicine);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 3)
@@ -99,12 +102,14 @@ else if (choice == 3)
     MedicineService medicineService2 = new MedicineService();
     int id = int.Parse(Console.ReadLine());
     medicineService2.RemoveMedicine(id);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 4)
 {
     MedicineService medicineService3 = new MedicineService();
-    medicineService3.GetAllMedicines();
+    medicineService.GetAllMedicines();
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 5)
@@ -120,6 +125,7 @@ else if (choice == 5)
     int categoryId = int.Parse(Console.ReadLine());
     Medicine medicine = new Medicine(medicineName, medicinePrice, categoryId, activeUser.Id);
     medicineService4.UpdateMedicine(id, medicine);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 6)
@@ -128,6 +134,7 @@ else if (choice == 6)
     Console.Write("Enter id:");
     int id = int.Parse(Console.ReadLine());
     medicineService5.GetMedicineById(id);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 7)
@@ -138,6 +145,7 @@ else if (choice == 7)
     try
     {
         medicineService6.GetMedicineByName(medicineName);
+        Console.WriteLine("");
         goto restart;
     }
     catch (NotFoundException ex)
@@ -151,12 +159,13 @@ else if (choice == 8)
     Console.Write("Enter id:");
     int categoryId = int.Parse(Console.ReadLine());
     medicineService7.GetMedicineByCategory(categoryId);
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 9)
 {
-    MedicineService medicineService = new MedicineService();
     medicineService.GetAllMedicines();
+    Console.WriteLine("");
     goto restart;
 }
 else if (choice == 0)

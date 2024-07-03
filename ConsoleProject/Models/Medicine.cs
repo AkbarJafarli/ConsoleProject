@@ -16,5 +16,10 @@
             CreatedDate = DateTime.Now;
         }
 
+
+        public override string ToString()
+        {
+            return $"Is: {Id} Name: {Name} Price: {Price} CreatedDate: {CreatedDate.ToShortDateString()}";
+        }
     }
 }
