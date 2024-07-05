@@ -9,9 +9,10 @@ User activeUser = new("Admin", "admin@gmail.com", "Admin123");
 MedicineService medicineService = new MedicineService();
 userService.AddUser(activeUser);
 Console.WriteLine("----------------------------------CODE HOSPITAL----------------------------------");
+restart2:
 while (true)
 {
-    Console.WriteLine("1.Register \n2.Login \n3.Exit");
+    Console.WriteLine("1.Register \n2.Login \n3.Remove user \n4.Exit");
     Console.WriteLine("");
     Console.Write("Select:");
     int selectChoice = int.Parse(Console.ReadLine());
@@ -20,7 +21,7 @@ while (true)
         Console.Write("Enter Fullname:");
         string fullname = Console.ReadLine();
         Console.Write("Enter Email:");
-        string email= Console.ReadLine();
+        string email = Console.ReadLine();
         while (true)
         {
             if (email.EmailChecker() == true)
@@ -73,6 +74,23 @@ while (true)
     }
     else if (selectChoice == 3)
     {
+        Console.Write("Enter Email:");
+        string deleteEmail = Console.ReadLine();
+        Console.Write("Enter Password:");
+        string deletePassword = Console.ReadLine();
+        try
+        {
+            userService.RemoveUser(deleteEmail);
+            Console.WriteLine("User succesfully removed");
+        }
+        catch (NotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+            goto restart2;
+        }
+    }
+    else if (selectChoice == 4)
+    {
         return;
     }
     else
@@ -96,7 +114,7 @@ Console.WriteLine("6.Find Medicine by Id");
 Console.WriteLine("7.Find Medicine by Name");
 Console.WriteLine("8.Find Medicine by Category");
 Console.WriteLine("9.View Medicines");
-Console.WriteLine("0.Exit");
+Console.WriteLine("0.Logout");
 Console.WriteLine("");
 Console.Write("Select:");
 
@@ -199,7 +217,7 @@ else if (choice == 9)
 }
 else if (choice == 0)
 {
-    return;
+    goto restart2;
 }
 else
 {
