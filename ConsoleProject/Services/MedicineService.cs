@@ -28,14 +28,13 @@ namespace ConsoleProject.Services
             }
             throw new NotFoundException("Id not found");
         }
-        public Medicine GetMedicineByName(string name)
+        public void GetMedicineByName(string name)
         {
             foreach (var item in DB.Medicines)
             {
-                if (item.Name == name)
-                    return item;
+                if (item.Name.Contains(name))
+                    Console.WriteLine($"Id: {item.Id} - Name:{item.Name} - CreatedDate: {item.CreatedDate} - Price: {item.Price}");
             }
-            throw new NotFoundException("Name not found");
         }
         public void GetMedicineByCategory(int categoryId)
         {
@@ -46,7 +45,6 @@ namespace ConsoleProject.Services
                     Console.WriteLine($"Id: {item.Id} - Name:{item.Name} - CreatedDate: {item.CreatedDate} - Price: {item.Price}");
                 }
             }
-            throw new NotFoundException("Id not found");
         }
         public void RemoveMedicine(int id)
         {

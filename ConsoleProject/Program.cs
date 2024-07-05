@@ -1,12 +1,14 @@
 ﻿using ConsoleProject.Exceptions;
 using ConsoleProject.Models;
 using ConsoleProject.Services;
+using ConsoleProject.Utilities;
 
 
 UserService userService = new UserService();
 User activeUser = new("Admin", "admin@gmail.com", "Admin123");
 MedicineService medicineService = new MedicineService();
 userService.AddUser(activeUser);
+Console.WriteLine("----------------------------------CODE HOSPITAL----------------------------------");
 while (true)
 {
     Console.WriteLine("1.Register \n2.Login \n3.Exit");
@@ -18,9 +20,35 @@ while (true)
         Console.Write("Enter Fullname:");
         string fullname = Console.ReadLine();
         Console.Write("Enter Email:");
-        string email = Console.ReadLine();
+        string email= Console.ReadLine();
+        while (true)
+        {
+            if (email.EmailChecker() == true)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid email...");
+                Console.Write("Enter Email:");
+                email = Console.ReadLine();
+            }
+        }
         Console.Write("Enter Password:");
         string password = Console.ReadLine();
+        while (true)
+        {
+            if (password.PasswordChecker() == true)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid password...");
+                Console.Write("Enter Password:");
+                password = Console.ReadLine();
+            }
+        }
         User User = new(fullname, email, password);
         userService.AddUser(User);
         Console.WriteLine("");
@@ -56,9 +84,9 @@ while (true)
 
 
 Console.WriteLine("");
-restart:
 Console.WriteLine("___Welcome to the Code Hospital___ ");
 Console.WriteLine("");
+restart:
 Console.WriteLine("1.Create a new Category");
 Console.WriteLine("2.Create a new Medicine");
 Console.WriteLine("3.Remove a Medicine");

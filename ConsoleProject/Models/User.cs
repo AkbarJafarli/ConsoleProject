@@ -2,6 +2,7 @@
 {
     public class User:BaseEntity
     {
+        private string email {  get; set; }
         public string FullName;
         public string Email;
         public string Password;
@@ -11,5 +12,7 @@
             Email = email;
             Password = password;
         }
+
+    
     }
 }
